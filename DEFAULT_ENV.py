@@ -1,0 +1,4 @@
+INPUT_DIRECTORY = '~/input/'
+PROCESSING_DIRECTORY = '~/processing/'
+OUTPUT_DIRECTORY = '~/output/'
+MAX_WAIT_TIME = 120
