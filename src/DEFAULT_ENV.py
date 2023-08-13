@@ -1,4 +1,4 @@
-INPUT_DIRECTORY = '~/input/'
-PROCESSING_DIRECTORY = '~/processing/'
-OUTPUT_DIRECTORY = '~/output/'
-MAX_WAIT_TIME = 120
+INPUT_DIRECTORY = '/tmp/input/'
+PROCESSING_DIRECTORY = '/tmp/processing/'
+OUTPUT_DIRECTORY = '/tmp/output/'
+MAX_WAIT_TIME = 10

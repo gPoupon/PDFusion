@@ -17,7 +17,7 @@ class NewFileHandler(FileSystemEventHandler):
         #print(f"New file created: {event.src_path}")
         fileDetected = True
         lastSeenTime = time.time()
-        print('Detected new file: ' + event.src_path + ' at:' + lastSeenTime)
+        print('Detected new file: ' + event.src_path + ' at: ' + time.ctime())
 
 def createIfNotExist(directories):
     for directory in directories:
@@ -36,7 +36,7 @@ def processFiles(processingPath, outputPath):
     fileNames = os.listdir(processingPath)
     if not len(fileNames) == 0:
         print("Combining: " + fileNames)
-        subprocess.run(['pdfunite','*.pdf', 'output'+time.time()+'.pdf'])
+        subprocess.run(['pdfunite','*.pdf', 'output'+str(time.time_ns())+'.pdf'])
 
 def moveFiles(inputPath, processingPath):
     fileNames = os.listdir(inputPath)
@@ -45,7 +45,9 @@ def moveFiles(inputPath, processingPath):
         print('Moved file: ' + file)
 
 def main():
-    
+    global lastSeenTime
+    global fileDetected
+
     inputPath = os.getenv('SCAN_DIRECTORY', DEFAULT_ENV.INPUT_DIRECTORY)
     processingPath = os.getenv('PROCESSING_DIRECTORY', DEFAULT_ENV.PROCESSING_DIRECTORY)
     outputPath = os.getenv('OUTPUT_DIRECTORY', DEFAULT_ENV.OUTPUT_DIRECTORY)
@@ -53,7 +55,7 @@ def main():
     
     
     #Create necesssary folders
-    createIfNotExist(inputPath, processingPath, outputPath)
+    createIfNotExist([inputPath, processingPath, outputPath])
 
     event_handler = NewFileHandler()
     observer = Observer()
