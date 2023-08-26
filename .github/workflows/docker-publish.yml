@@ -42,5 +42,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: https://ghcr.io/gpoupon/pdfusion:latest
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
