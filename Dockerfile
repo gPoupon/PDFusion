@@ -6,6 +6,7 @@ LABEL org.opencontainers.image.version=1
 LABEL org.opencontainers.image.licenses=MIT
 
 ENV DEBIAN_FRONTEND=noninteractive
+ENV PYTHONUNBUFFERED=1
 
 WORKDIR /PDFusion
 
