@@ -1,4 +1,8 @@
-FROM python
+FROM python:alpine
+
+LABEL NAME="PDFusion"
+
+LABEL MAJORVERSION=1
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -8,7 +12,7 @@ COPY requirements.txt .
 
 RUN pip install -r requirements.txt
 
-RUN apt update && apt install -y poppler-utils && rm -rf /var/lib/apt/lists/*
+RUN apt update && apt install -y ghostscript && rm -rf /var/lib/apt/lists/*
 
 COPY ./src ./src
 
