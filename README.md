@@ -12,4 +12,4 @@ Use the Scan to PC functionality to scan/upload documents into a monitored folde
 After the timer expires, any newly-scanned items will go towards building a 2nd merged document, and the pattern repeats.
 
 
-Feel free to create issues if you encounter issues.
+Feel free to create issues if you encounter any.
