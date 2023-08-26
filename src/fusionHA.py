@@ -70,6 +70,8 @@ def main():
     processingPath = Path(os.getenv('PROCESSING_DIRECTORY', DEFAULT_ENV.PROCESSING_DIRECTORY))
     outputPath = Path(os.getenv('OUTPUT_DIRECTORY', DEFAULT_ENV.OUTPUT_DIRECTORY))
     maxWaitTime = os.getenv('MAX_WAIT_TIME', DEFAULT_ENV.MAX_WAIT_TIME)
+    print(type(maxWaitTime))
+    print(str(maxWaitTime))
     if not isinstance(maxWaitTime, int) or maxWaitTime > 3600:
         maxWaitTime = 3600
     
