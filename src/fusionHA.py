@@ -86,6 +86,8 @@ def main():
     try:
         while True:
             time.sleep(1)
+            print('filedetected: ' + str(fileDetected))
+            print(time.time() - lastSeenTime)
             if fileDetected and (time.time() - lastSeenTime) > maxWaitTime:
                 moveFiles(inputPath, processingPath)
                 fileDetected = False
