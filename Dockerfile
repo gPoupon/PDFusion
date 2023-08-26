@@ -1,4 +1,4 @@
-FROM python:alpine
+FROM python
 
 LABEL org.opencontainers.image.source=https://github.com/gPoupon/PDFusion
 LABEL org.opencontainers.image.title=PDFusion
@@ -14,7 +14,7 @@ COPY requirements.txt .
 
 RUN pip install -r requirements.txt
 
-RUN apk add --update-cache ghostscript && rm -rf /var/cache/apk/*
+RUN apt-get update && apt-get install -y ghostscript inotify-tools && rm -rf /var/lib/apt/lists/*
 
 COPY ./src ./src
 
