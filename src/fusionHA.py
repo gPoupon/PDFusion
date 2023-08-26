@@ -1,5 +1,5 @@
-import time
 import DEFAULT_ENV
+from datetime import datetime
 import os
 import shutil
 import subprocess
@@ -49,11 +49,13 @@ def cleanup(directory):
 def processFiles(processingPath, outputPath):
     
     if len(list(Path.iterdir(processingPath))) >0:
-        command=['gs', '-o', str(Path.joinpath(outputPath,'output_'+str(time.time_ns())+'.pdf')),'-sDEVICE=pdfwrite', '-dPDFSETTINGS=/prepress']
+        outputFileName = 'output_'+datetime.now().strftime("%Y_%m_%d--%H_%M_%S")+'.pdf'
+        command=['gs', '-o', str(Path.joinpath(outputPath, outputFileName)),'-sDEVICE=pdfwrite', '-dPDFSETTINGS=/prepress']
         fileNames = list(map(str, processingPath.glob('*.pdf')))
         command+=fileNames
         print("Combining: " + str(fileNames))
         print(str(command))
+        print("Saving as: " + str(outputFileName))
         subprocess.run(command)
         cleanup(processingPath)
 
@@ -78,7 +80,7 @@ def main():
         except ValueError as error:
             print(error)
             maxWaitTime = 3600    
-    
+
     #Create necesssary folders
     createIfNotExist([inputPath, processingPath, outputPath])
     cleanup(inputPath)
