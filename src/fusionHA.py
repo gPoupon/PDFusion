@@ -70,10 +70,14 @@ def main():
     processingPath = Path(os.getenv('PROCESSING_DIRECTORY', DEFAULT_ENV.PROCESSING_DIRECTORY))
     outputPath = Path(os.getenv('OUTPUT_DIRECTORY', DEFAULT_ENV.OUTPUT_DIRECTORY))
     maxWaitTime = os.getenv('MAX_WAIT_TIME', DEFAULT_ENV.MAX_WAIT_TIME)
-    print(type(maxWaitTime))
-    print(str(maxWaitTime))
-    if not isinstance(maxWaitTime, int) or maxWaitTime > 3600:
-        maxWaitTime = 3600
+    if not isinstance(maxWaitTime, int):
+        try:
+            maxWaitTime = int(maxWaitTime)
+            if maxWaitTime > 3600:
+                maxWaitTime = 3600
+        except ValueError as error:
+            print(error)
+            maxWaitTime = 3600    
     
     #Create necesssary folders
     createIfNotExist([inputPath, processingPath, outputPath])
@@ -88,9 +92,9 @@ def main():
     try:
         while True:
             time.sleep(1)
-            print('max wait time: ' + str(maxWaitTime))
-            print('filedetected: ' + str(fileDetected))
-            print(time.time() - lastSeenTime)
+            #print('max wait time: ' + str(maxWaitTime))
+            #print('filedetected: ' + str(fileDetected))
+            # print(time.time() - lastSeenTime)
             if fileDetected and (time.time() - lastSeenTime) > maxWaitTime:
                 moveFiles(inputPath, processingPath)
                 fileDetected = False
