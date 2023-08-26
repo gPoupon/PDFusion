@@ -16,7 +16,9 @@ jobs:
   build-and-push-image:
     runs-on: ubuntu-latest
     # Sets the permissions granted to the `GITHUB_TOKEN` for the actions in this job.
-    permissions: write-all
+    permissions:
+      contents: read
+      packages: write
       # 
     steps:
       - name: Checkout repository
@@ -42,5 +44,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: gpoupon/pdfusion:latest
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
