@@ -1,5 +1,6 @@
 FROM python:alpine
 
+LABEL org.opencontainers.image.source="https://github.com/gPoupon/PDFusion"
 LABEL org.opencontainers.image.title="PDFusion"
 LABEL org.opencontainers.image.version=1
 LABEL org.opencontainers.image.licenses="MIT"
