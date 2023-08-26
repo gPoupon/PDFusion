@@ -86,6 +86,7 @@ def main():
     try:
         while True:
             time.sleep(1)
+            print('max wait time: ' + str(maxWaitTime))
             print('filedetected: ' + str(fileDetected))
             print(time.time() - lastSeenTime)
             if fileDetected and (time.time() - lastSeenTime) > maxWaitTime:
