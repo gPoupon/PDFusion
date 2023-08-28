@@ -51,7 +51,7 @@ def processFiles(processingPath, outputPath):
     if len(list(Path.iterdir(processingPath))) >0:
         outputFileName = 'output_'+datetime.now().strftime("%Y_%m_%d--%H_%M_%S")+'.pdf'
         command=['gs', '-o', str(Path.joinpath(outputPath, outputFileName)),'-sDEVICE=pdfwrite', '-dPDFSETTINGS=/prepress']
-        fileNames = list(map(str, processingPath.glob('*.pdf')))
+        fileNames = list(map(str, sorted(processingPath.glob('*.pdf'), key=os.path.getmtime, reverse=True)))
         command+=fileNames
         print("Combining: " + str(fileNames))
         print(str(command))
