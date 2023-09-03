@@ -20,8 +20,8 @@ pdfusion:
       - MAX_WAIT_TIME=60
       - TZ:"America/Toronto"
     volumes:
-      - multi-consume:/tmp/input # The directory where your scanner puts scanned PDFs
-      - consume:/tmp/output # The consume directory for Paperless-NGX (i.e. the output of PDFusion)
+      - scans:/tmp/input # The directory where your scanner puts scanned PDFs
+      - paperless-consume:/tmp/output # The consume directory for Paperless-NGX (i.e. the output of PDFusion)
     restart: always
 ```
 
